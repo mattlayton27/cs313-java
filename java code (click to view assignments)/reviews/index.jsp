@@ -27,7 +27,7 @@
                 <ul>
                     <li id="mobilehomenav"><div class="space"><a href="index.jsp">Home</a></div></li>
                     <li id="mobilereviewsnav"><div class="space"><a href="reviews.jsp">Reviews</a></div></li>
-                    <li id="mobileadminnav"><div class="space"><a href="LogIn">Admin</a></div></li>
+                    <li id="mobileadminnav"><div class="space"><a href="Admin">Admin</a></div></li>
                 </ul>
             </div>
         </nav>
