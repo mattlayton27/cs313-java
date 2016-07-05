@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Database.DatabaseInterface;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -41,10 +43,22 @@ public class Register extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            HttpSession session = request.getSession();
-            session.setAttribute("name", name);
-            request.setAttribute("name", session.getAttribute("name"));
-            request.getRequestDispatcher("/admin.jsp").forward(request, response);
+            DatabaseInterface dbi = new DatabaseInterface();
+            boolean registered = dbi.registerUser(name, username, password);
+            
+            if (registered) {
+                HttpSession session = request.getSession();
+                session.setAttribute("name", name);
+                request.setAttribute("name", session.getAttribute("name"));
+                request.getRequestDispatcher("/admin.jsp").forward(request, response); 
+                return;
+            } else {
+                
+                request.setAttribute("error", "User with that username already exists. Try again.");
+                dbi.close();
+                request.getRequestDispatcher("/registration.jsp").forward(request, response);
+                return;
+            }
         }
     }
 

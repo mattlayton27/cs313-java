@@ -34,6 +34,9 @@
         <main>
             <div id="login">
                 <h2>Register</h2>
+                <c:if test="${not empty error}">
+                    <p id="error">${error}</p>
+                </c:if>
                 <form method="POST" action="Register">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" required></input><br>

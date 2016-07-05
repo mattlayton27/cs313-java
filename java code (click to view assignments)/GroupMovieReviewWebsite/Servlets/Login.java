@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import Database.DatabaseInterface;
+import Model.User;
 
 /**
  *
@@ -34,23 +36,36 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            String name = "Admin";
+            // Obtain provided credentials
+            String name = null; //"Admin";
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            if (username.equals("admin") && password.equals("bestgroup")) {
-                // admin page and session var
+            // Access Database for validation
+            DatabaseInterface dbi = new DatabaseInterface();
+            User user = dbi.authorizeUser(username, password);
+            
+            if (user == null) {
+                
+                // Invalid credentials. User wasn't found
+                request.setAttribute("error", "Invalid credentials. Try again.");
+                dbi.close();
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                return;
+            } else {
+                
+                // Valid credentials. Log 'em in
+                name = user.getName();
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
                 request.setAttribute("name", session.getAttribute("name"));
+                dbi.close();
                 request.getRequestDispatcher("/admin.jsp").forward(request, response);
-            } else {
-                // invalid credentials
-                request.setAttribute("error", "Invalid credentials. Try again.");
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                return;
             }
         }
     }
