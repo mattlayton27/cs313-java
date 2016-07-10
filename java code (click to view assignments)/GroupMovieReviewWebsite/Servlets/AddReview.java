@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Database.DatabaseInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +36,15 @@ public class AddReview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            HttpSession session = request.getSession();
+            DatabaseInterface dbi = new DatabaseInterface();
+            
+            String movie = request.getParameter("movieName");
+            String review = request.getParameter("movieReview");
+            int user_id = Integer.parseInt(session.getAttribute("user_id").toString());
+            
+            dbi.addReview(user_id, movie, review);
             
             // This is where you will add a review
             request.getRequestDispatcher("/Admin").forward(request, response);

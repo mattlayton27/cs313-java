@@ -11,6 +11,7 @@ package Model;
  */
 public class User {
     
+    private int id;
     private String name = null;
     private String username = null;
     private String password = null;
@@ -21,6 +22,15 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
     public void setName(String name) {
         

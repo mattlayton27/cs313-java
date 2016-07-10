@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +19,7 @@
             <div id="console_navigation">
                 <ul>
                     <li id="homenav"><a href="index.jsp">Home</a></li>
-                    <li id="reviewsnav"><a href="reviews.jsp">Reviews</a></li>
+                    <li id="reviewsnav"><a href="Review">Reviews</a></li>
                     <li id="adminnav"><a href="Admin">Admin</a></li>
                 </ul>
             </div>
@@ -34,9 +35,11 @@
         <main>
             <div id="reviews">
                 <h2>Reviews</h2>
-                <h3>(Movie Title)</h3>
-                <video src=""></video>
-                <p><b>Review:</b></p>
+                <c:forEach items="${reviews}" var="review">
+                    <h3 id="reviewTitle">${review.getTitle()}</h3>
+                    <p>"${review.getReview()}"</p>
+                    <p id="reviewer">- ${review.getReviewer()}</p>
+                </c:forEach>
             </div>
         </main>
     </body>

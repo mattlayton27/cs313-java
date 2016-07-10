@@ -6,6 +6,7 @@
 
 package Servlets;
 
+import Database.DatabaseInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,6 +36,9 @@ public class DeleteReview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+             DatabaseInterface dbi = new DatabaseInterface();
+             dbi.deleteReview(Integer.parseInt(request.getParameter("reviewId").toString()));
             
             // This is the servlet to delete a review
             request.getRequestDispatcher("/Admin").forward(request, response);

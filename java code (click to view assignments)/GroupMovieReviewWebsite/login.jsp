@@ -19,7 +19,7 @@
             <div id="console_navigation">
                 <ul>
                     <li id="homenav"><a href="index.jsp">Home</a></li>
-                    <li id="reviewsnav"><a href="reviews.jsp">Reviews</a></li>
+                    <li id="reviewsnav"><a href="Review">Reviews</a></li>
                     <li id="adminnav"><a href="Admin">Admin</a></li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
             <div id="mobile_navigation">
                 <ul>
                     <li id="mobilehomenav"><div class="space"><a href="index.jsp">Home</a></div></li>
-                    <li id="mobilereviewsnav"><div class="space"><a href="reviews.jsp">Reviews</a></div></li>
+                    <li id="mobilereviewsnav"><div class="space"><a href="Review">Reviews</a></div></li>
                     <li id="mobileadminnav"><div class="space"><a href="Admin">Admin</a></div></li>
                 </ul>
             </div>

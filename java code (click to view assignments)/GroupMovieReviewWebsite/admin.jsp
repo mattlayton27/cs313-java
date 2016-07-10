@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +19,7 @@
             <div id="console_navigation">
                 <ul>
                     <li id="homenav"><a href="index.jsp">Home</a></li>
-                    <li id="reviewsnav"><a href="reviews.jsp">Reviews</a></li>
+                    <li id="reviewsnav"><a href="Review">Reviews</a></li>
                     <li id="adminnav"><a href="Admin">Admin</a></li>
                 </ul>
             </div>
@@ -52,28 +53,19 @@
                         <th class="reviewTd">Review</th>
                     </tr>
                     <!-- Start of foreach loop -->
-                    <tr>
-                        <td class="movieTd">Example</td>
-                        <td class="reviewerTd">Example</td>
-                        <td class="reviewTd">Example</td>
-                        <td class="deleteTd">
-                            <form method="POST" action="DeleteReview">
-                                <input type="hidden" name="reviewId" value="exampleId"></input>
-                                <input type="submit" id="deleteButton" value="Delete"></input>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="movieTd">Example</td>
-                        <td class="reviewerTd">Example</td>
-                        <td class="reviewTd">Example</td>
-                        <td class="deleteTd">
-                            <form method="POST" action="DeleteReview">
-                                <input type="hidden" name="reviewId" value="exampleId"></input>
-                                <input type="submit" id="deleteButton" value="Delete"></input>
-                            </form>
-                        </td>
-                    </tr>
+                    <c:forEach items="${reviews}" var="review">
+                        <tr>
+                            <td class="movieTd"><c:out value="${review.getTitle()}" /></td>
+                            <td class="reviewerTd"><c:out value="${review.getReviewer()}" /></td>
+                            <td class="reviewTd"><c:out value="${review.getReview()}" /></td>
+                            <td class="deleteTd">
+                                <form method="POST" action="DeleteReview">
+                                    <input type="hidden" name="reviewId" value="${review.getId()}">
+                                    <input type="submit" id="deleteButton" value="Delete"></input>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
         </main>

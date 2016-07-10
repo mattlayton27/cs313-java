@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
             // This is where the logout will take place
             HttpSession session = request.getSession();
             session.removeAttribute("name");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 

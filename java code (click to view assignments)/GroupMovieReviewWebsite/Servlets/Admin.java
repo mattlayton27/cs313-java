@@ -5,8 +5,11 @@
  */
 package Servlets;
 
+import Database.DatabaseInterface;
+import Model.MovieReview;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +47,11 @@ public class Admin extends HttpServlet {
             if (session.getAttribute("name") != null) {
                 // send to admin if already logged in to the session
                 request.setAttribute("name", session.getAttribute("name"));
+                
+                // Get movie review data from database
+                DatabaseInterface dbi = new DatabaseInterface();
+                List<MovieReview> reviews = dbi.getMovieReviews();
+                request.setAttribute("reviews", reviews);
                 request.getRequestDispatcher("/admin.jsp").forward(request, response);
             } else {
                 // send to login if there is no session

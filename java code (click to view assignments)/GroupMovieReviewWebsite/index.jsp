@@ -18,7 +18,7 @@
             <div id="console_navigation">
                 <ul>
                     <li id="homenav"><a href="index.jsp">Home</a></li>
-                    <li id="reviewsnav"><a href="reviews.jsp">Reviews</a></li>
+                    <li id="reviewsnav"><a href="Review">Reviews</a></li>
                     <li id="adminnav"><a href="Admin">Admin</a></li>
                 </ul>
             </div>
@@ -35,7 +35,7 @@
             <img id="mainImage" src="media/space.jpg" alt="Image: Space" title="Latest Movie Reviews">
             <div id="reviewsButton">
                 <h2>For the latest and best reviews on the newest movies</h2>
-                <a href="reviews.jsp">Click Here</a>
+                <a href="Review">Click Here</a>
             </div>
         </main>
     </body>

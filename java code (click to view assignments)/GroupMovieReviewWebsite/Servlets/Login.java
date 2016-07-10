@@ -62,9 +62,10 @@ public class Login extends HttpServlet {
                 name = user.getName();
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
+                session.setAttribute("user_id", user.getId());
                 request.setAttribute("name", session.getAttribute("name"));
                 dbi.close();
-                request.getRequestDispatcher("/admin.jsp").forward(request, response);
+                request.getRequestDispatcher("/Admin").forward(request, response);
                 return;
             }
         }

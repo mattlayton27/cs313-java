@@ -50,7 +50,7 @@ public class Register extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
                 request.setAttribute("name", session.getAttribute("name"));
-                request.getRequestDispatcher("/admin.jsp").forward(request, response); 
+                request.getRequestDispatcher("/Admin").forward(request, response); 
                 return;
             } else {
                 
