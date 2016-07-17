@@ -204,6 +204,82 @@ public class DatabaseInterface {
 
         return reviews;
     }
+    
+    public List<MovieReview> getMovieReviewsByReviewer() {
+
+        ResultSet rs = null;
+        MovieReview review = null;
+        List<MovieReview> reviews = new ArrayList<>();
+
+        if (conn != null) {
+
+            try {
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT r.review_id, r.movie_title, r.review_content, u.name FROM Review AS r INNER JOIN User AS u WHERE r.user_id = u.user_id ORDER BY u.name ASC";
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    String id = Integer.toString(rs.getInt("review_id"));
+                    String movieTitle = rs.getString("movie_title");
+                    String reviewContent = rs.getString("review_content");
+                    String reviewerName = rs.getString("name");
+                    review = new MovieReview(id, movieTitle, reviewContent, reviewerName);
+                    reviews.add(review);
+                }
+
+                rs.close();
+                stmt.close();
+            } catch (Exception e) {
+
+                System.out.println("Error executing sql: " + e.getMessage());
+            }
+
+        } else {
+
+            System.out.println("Connection not established while getting movie reviews!");
+        }
+
+        return reviews;
+    }
+    
+    public List<MovieReview> getMovieReviewsByMovie() {
+
+        ResultSet rs = null;
+        MovieReview review = null;
+        List<MovieReview> reviews = new ArrayList<>();
+
+        if (conn != null) {
+
+            try {
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT r.review_id, r.movie_title, r.review_content, u.name FROM Review AS r INNER JOIN User AS u WHERE r.user_id = u.user_id ORDER BY r.movie_title ASC";
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+
+                    String id = Integer.toString(rs.getInt("review_id"));
+                    String movieTitle = rs.getString("movie_title");
+                    String reviewContent = rs.getString("review_content");
+                    String reviewerName = rs.getString("name");
+                    review = new MovieReview(id, movieTitle, reviewContent, reviewerName);
+                    reviews.add(review);
+                }
+
+                rs.close();
+                stmt.close();
+            } catch (Exception e) {
+
+                System.out.println("Error executing sql: " + e.getMessage());
+            }
+
+        } else {
+
+            System.out.println("Connection not established while getting movie reviews!");
+        }
+
+        return reviews;
+    }
 
     public void deleteReview(int id) {
 

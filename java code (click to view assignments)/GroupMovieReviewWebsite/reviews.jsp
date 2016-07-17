@@ -40,6 +40,10 @@
                     <p>"${review.getReview()}"</p>
                     <p id="reviewer">- ${review.getReviewer()}</p>
                 </c:forEach>
+                <form action="Review" method="post">
+                    <input type="submit" id="submit" name="sortMovie" value="Sort by Movie" />
+                    <input type="submit" id="submit" name="sortReviewer" value="Sort by Reviewer" />
+                </form>
             </div>
         </main>
     </body>

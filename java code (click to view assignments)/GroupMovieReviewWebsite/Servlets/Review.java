@@ -39,7 +39,13 @@ public class Review extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
 
             DatabaseInterface dbi = new DatabaseInterface();
-            List<MovieReview> reviews = dbi.getMovieReviews();
+            List<MovieReview> reviews;
+            if (request.getParameter("sortReviewer") != null) {
+                reviews = dbi.getMovieReviewsByReviewer();
+            }
+            else {
+                reviews = dbi.getMovieReviewsByMovie();
+            }            
             request.setAttribute("reviews", reviews);
             request.getRequestDispatcher("/reviews.jsp").forward(request, response);
         }
